@@ -247,8 +247,8 @@ public class PgDiffSequences {
                 writer.print(newSequence.getName());
                 writer.println(" IS NULL;");
             }
-
-            alterPrivileges(writer, oldSequence, newSequence, searchPathHelper);
+            if (!arguments.isIgnorePrivileges())
+            	alterPrivileges(writer, oldSequence, newSequence, searchPathHelper);
         }
     }
 

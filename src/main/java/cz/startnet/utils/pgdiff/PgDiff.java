@@ -309,7 +309,7 @@ public class PgDiff {
             PgDiffViews.createViews(
                     writer, oldSchema, newSchema, searchPathHelper);
             PgDiffViews.alterViews(
-                    writer, oldSchema, newSchema, searchPathHelper);
+                    writer, arguments, oldSchema, newSchema, searchPathHelper);
 
             PgDiffFunctions.alterComments(
                     writer, oldSchema, newSchema, searchPathHelper);

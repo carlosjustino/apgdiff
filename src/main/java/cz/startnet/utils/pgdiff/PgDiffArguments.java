@@ -65,6 +65,11 @@ public class PgDiffArguments {
      * Whether Slony triggers should be ignored.
      */
     private boolean ignoreSlonyTriggers;
+    /**
+     * Whether to ignore Privileges of users.
+     */
+    private boolean ignorePrivileges;
+       
 
     /**
      * Setter for {@link #addDefaults}.
@@ -211,6 +216,26 @@ public class PgDiffArguments {
     public boolean isVersion() {
         return version;
     }
+    
+    
+    /**
+     * Setter for {@link #ignorePrivileges}.
+     *
+     * @param ignorePermissions {@link #ignorePrivileges}
+     */
+    public void setIgnorePrivileges(
+            final boolean ignorePrivileges) {
+        this.ignorePrivileges = ignorePrivileges;
+    }
+
+    /**
+     * Getter for {@link #ignorePrivileges}.
+     *
+     * @return {@link #ignorePrivileges}
+     */
+    public boolean isIgnorePrivileges() {
+        return ignorePrivileges;
+    }
 
     /**
      * Parses command line arguments or outputs instructions.
@@ -239,6 +264,8 @@ public class PgDiffArguments {
                 setAddTransaction(true);
             } else if ("--ignore-function-whitespace".equals(args[i])) {
                 setIgnoreFunctionWhitespace(true);
+            } else if ("--ignore-privileges".equals(args[i])) {
+                setIgnorePrivileges(true);
             } else if ("--ignore-slony-triggers".equals(args[i])) {
                 setIgnoreSlonyTriggers(true);
             } else if ("--ignore-start-with".equals(args[i])) {

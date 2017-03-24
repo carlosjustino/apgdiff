@@ -129,7 +129,7 @@ public class PgDiffViews {
      * @param newSchema        new schema
      * @param searchPathHelper search path helper
      */
-    public static void alterViews(final PrintWriter writer,
+    public static void alterViews(final PrintWriter writer, final PgDiffArguments arguments,
             final PgSchema oldSchema, final PgSchema newSchema,
             final SearchPathHelper searchPathHelper) {
         if (oldSchema == null) {
@@ -215,8 +215,8 @@ public class PgDiffViews {
                     writer.println(" IS NULL;");
                 }
             }
-
-            alterPrivileges(writer, oldView, newView, searchPathHelper);
+            if (!arguments.isIgnorePrivileges())
+            	alterPrivileges(writer, oldView, newView, searchPathHelper);
         }
     }
 
