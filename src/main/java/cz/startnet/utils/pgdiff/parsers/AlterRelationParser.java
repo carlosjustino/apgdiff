@@ -103,6 +103,8 @@ public class AlterRelationParser {
             } else if (table != null && parser.expectOptional("DISABLE")) {
                 parseDisable(
                         parser, outputIgnoredStatements, relName, database);
+            } else if (parser.expectOptional("REPLICA", "IDENTITY", "NOTHING" )){
+
             } else {
                 parser.throwUnsupportedCommand();
             }

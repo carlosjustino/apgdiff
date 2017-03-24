@@ -139,8 +139,8 @@ public class PgDiffTables {
             addAlterStatistics(writer, oldTable, newTable, searchPathHelper);
             addAlterStorage(writer, oldTable, newTable, searchPathHelper);
             alterComments(writer, oldTable, newTable, searchPathHelper);
-            alterOwnerTo(writer, oldTable, newTable, searchPathHelper);
             if (!arguments.isIgnorePrivileges()){
+            	alterOwnerTo(writer, oldTable, newTable, searchPathHelper);
             	alterPrivileges(writer, oldTable, newTable, searchPathHelper);
             	alterPrivilegesColumns(writer, oldTable, newTable, searchPathHelper);
             }

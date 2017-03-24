@@ -1,8 +1,9 @@
 <project name="apgdiff" default="jar" basedir=".">
     <property name="name" value="Another PostgreSQL Diff Tool"/>
-    <property name="version" value="2.4"/>
+    <property name="version" value="2.5"/>
     <property name="build" value="build"/>
     <property name="dist" value="dist"/>
+	<property name="target" value="${basedir}/target"/>
     <property name="build.output" value="${build}/classes"/>
     <property name="dist.javadoc" value="${dist}/javadoc"/>
     <property name="build.final.name" value="${ant.project.name}-${version}"/>
@@ -13,9 +14,10 @@
     <property name="src.resources" value="src/main/resources"/>
     <property name="test.src" value="src/test/java"/>
     <property name="test.resources.src" value="src/test/resources"/>
-    <property name="source" value="1.5"/>
-    <property name="target" value="1.5"/>
+    <property name="source" value="1.8"/>
+    <property name="target" value="1.8"/>
     <property name="main.class" value="cz.startnet.utils.pgdiff.Main"/>
+	<property name="pasta.deploy" value="${dist}/../../apgdiff-${version}"/>
 
     <path id="build.classpath">
         <fileset dir="${lib}">
@@ -53,8 +55,14 @@
             </manifest>
         </jar>
     </target>
-
-    <target name="compile-tests" depends="compile"
+	
+	<target name="copy-jar"  description="Copia o Jar para a pasta deploy">
+		<mkdir dir="${pasta.deploy}"/>
+		<echo>oiaaaaa</echo>
+		<copy file="${target}/${build.final.name}.0-SNAPSHOT.jar"  tofile="${pasta.deploy}/${build.final.name}.jar" overwrite="true" />
+	</target>
+    
+	<target name="compile-tests" depends="compile"
             description="Compile the test code">
         <mkdir dir="${test.output}"/>
         <javac destdir="${test.output}" srcdir="${test.src}" source="${source}"
